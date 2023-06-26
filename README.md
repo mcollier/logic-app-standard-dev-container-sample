@@ -1,17 +1,9 @@
-# Logic Apps Standard - Dev Container Sample
+# Logic Apps Standard - Starter Dev Container
 
-## Notes
-- Start the local Azurite storage emulator.
-- Update your local source/workflow-designtime/local.settings.json file to set the `AzureWebJobsStorage` setting to "UseDevelopmentStorage=true".
-    ```json
-    {
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsSecretStorageType": "Files",
-        "FUNCTIONS_WORKER_RUNTIME": "node",
-        "APP_KIND": "workflowapp",
-        "ProjectDirectoryPath": "/workspaces/logic-apps-devcontainer-sample/source/workflow-designtime/",
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true"
-    }
-    }
-    ```
+You can use this dev container as a starter point for your Function and Logic apps development. It contains suggested configuration and extensions.
+
+Simply choose the option to `Reopen in Container` when prompted by the Dev Containers extension, or use the `Dev Containers: Reopen in Container` command from the command bar.
+
+> NOTE
+>
+> Make sure to start the local Azurite storage emulator by clicking `[Azurite Blob Service]` on the status bar once the project is open in the dev container.
