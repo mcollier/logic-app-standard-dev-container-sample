@@ -21,12 +21,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"Azurite.azurite",
+				"ms-azuretools.vscode-azurelogicapps",
 				"ms-azure-devops.azure-pipelines",
 				"ms-azuretools.vscode-bicep",
-				"ms-azuretools.vscode-azurelogicapps",
-				"ms-azuretools.vscode-azurefunctions",
-				"ms-dotnettools.csharp",
 				"ms-dotnettools.vscode-dotnet-runtime",
 				"ms-vscode.vscode-node-azure-pack",
 				"davidanson.vscode-markdownlint"
@@ -38,8 +35,11 @@
 			}
 		}
 	},
+	"mounts": [
+		"source=${localWorkspaceFolderBasename}-azure-functions-core-tools,target=${containerWorkspaceFolder}/.azure-functions-core-tools,type=volume"
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp ./.devcontainer/starter.settings.json ./source/workflow-designtime/local.settings.json",
+	"postCreateCommand": "cp ./.devcontainer/starter.settings.json ./source/workflow-designtime/local.settings.json && sudo chown vscode .azure-functions-core-tools",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
