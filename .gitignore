@@ -3,10 +3,11 @@
 bin
 obj
 appsettings.json
-*.settings.json
+local.settings.json
+.debug
+
+# Azurite files
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
 
-# devContainer settings template
-!starter.settings.json
