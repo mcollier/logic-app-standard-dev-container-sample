@@ -3,8 +3,6 @@
     "Values": {
         "AzureWebJobsSecretStorageType": "Files",
         "FUNCTIONS_WORKER_RUNTIME": "node",
-        "APP_KIND": "workflowapp",
-        "ProjectDirectoryPath": "/workspaces/logic-apps-devcontainer-sample/source/workflow-designtime/",
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true"
+        "ProjectDirectoryPath": "/workspaces/logic-apps-devcontainer-sample/source/"
     }
 }
