@@ -22,3 +22,7 @@ Please be sure to set the `AzureWebJobsStorage` application setting in the root-
   }
 }
 ```
+
+> NOTE
+>
+> Open the included Logic App workflow in the designer _before_ attempting to debug the Logic App.  Doing so seems to force the Azure Functions extension bundle at **/home/vscode/.azure-functions-core-tools/Functions/ExtensionBundles/Microsoft.Azure.Functions.ExtensionBundle.Workflows** to download.  Failure to do so may result in an error such as **"Error: ENOENT: no such file or directory, scandir '/home/vscode/.azure-functions-core-tools/Functions/ExtensionBundles/Microsoft.Azure.Functions.ExtensionBundle.Workflows'"**
