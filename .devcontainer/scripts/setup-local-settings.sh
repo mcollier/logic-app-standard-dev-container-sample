@@ -1,9 +1,30 @@
 #! /bin/bash
 set -e
 
+WORKFLOW_TEMPLATE_SETTINGS="./source/workflow-designtime/local.template.settings.json"
+WORKFLOW_LOCAL_SETTINGS="./source/workflow-designtime/local.settings.json"
 
-cp ./source/workflow-designtime/starter.settings.json ./source/workflow-designtime/local.settings.json
+HOST_TEMPLATE_SETTINGS="./source/local.template.settings.json"
+HOST_LOCAL_SETTINGS="./source/local.settings.json"
 
-cp ./source/starter.settings.json ./source/local.settings.json
+# Check if the file exists
+if [ ! -f "$WORKFLOW_LOCAL_SETTINGS" ]; then
+    # If the file does not exist, copy the template
+    cp $HOST_TEMPLATE_SETTINGS $WORKFLOW_LOCAL_SETTINGS
+    echo "Copied workflow template settings."
+else
+    # If the file exists, do nothing.
+    echo "Workflow settings already exist."
+fi
+
+if [ ! -f $HOST_LOCAL_SETTINGS ]; then
+    # If the file does not exist, copy the template
+    cp $HOST_TEMPLATE_SETTINGS $HOST_LOCAL_SETTINGS
+    echo "Copied local template settings."
+else
+    # If the file exists, do nothing.
+    echo "Host local settings already exist."
+fi
+
 
 chown vscode .azure-functions-core-tools
