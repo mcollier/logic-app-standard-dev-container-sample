@@ -1,7 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. 
 {
 	"name": "Logic App (Standard)",
-	"dockerFile": "Dockerfile",
+	// Find the Dockerfile for mcr.microsoft.com/azure-functions/dotnet: 4-dotnet6-core-tools at
+	// https: //github.com/Azure/azure-functions-docker/blob/dev/host/4/bullseye/amd64/dotnet/dotnet-inproc/dotnet-core-tools.Dockerfile
+	"image": "mcr.microsoft.com/azure-functions/dotnet:4-dotnet6-core-tools",
 	"forwardPorts": [
 		7071
 	],
@@ -13,33 +15,29 @@
 			"version": "latest"
 		},
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/stuartleeks/dev-container-features/azure-cli-persistence:0": {},
-		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+		"ghcr.io/devcontainers/features/github-cli:1": {}
 	},
 	// Configure tool-specific properties
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"Azurite.azurite",
-				"ms-azure-devops.azure-pipelines",
-				"ms-azuretools.vscode-bicep",
 				"ms-azuretools.vscode-azurelogicapps",
-				"ms-azuretools.vscode-azurefunctions",
-				"ms-dotnettools.csharp",
+				"ms-azuretools.vscode-bicep",
+				"ms-dotnettools.csdevkit",
 				"ms-dotnettools.vscode-dotnet-runtime",
 				"ms-vscode.vscode-node-azure-pack",
 				"davidanson.vscode-markdownlint"
 			],
-			"settings": {
-				"files.associations": {
-					"**/.azuredevops/pipelines/*.yml": "azure-pipelines"
-				}
-			}
+			"settings": {}
 		}
 	},
+	"mounts": [
+		"source=${localWorkspaceFolderBasename}-azure-functions-core-tools,target=${containerWorkspaceFolder}/.azure-functions-core-tools,type=volume"
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp ./.devcontainer/starter.settings.json ./source/workflow-designtime/local.settings.json",
+	// The local.settings.json file is needed for the workflow designer (as part of the Azure Functions runtime). The local.settings.json file
+	// is normally ignored via the .gitignore file created in a new Logic App Standard (or Azure Functions) project.
+	"postCreateCommand": "sudo .devcontainer/scripts/setup-local-settings.sh",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
